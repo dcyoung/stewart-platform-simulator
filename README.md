@@ -5,7 +5,7 @@ An npm package for simulating parallel motion mechanisms.
 ## Install
 
 ```bash
-npm install my-package-name
+npm install stewart-platform-simulator
 ```
 
 ## Usage
