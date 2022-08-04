@@ -1,7 +1,7 @@
 {
-  "name": "typescript-npm-package-template",
+  "name": "stewart-platform-simulator",
   "version": "0.0.0-development",
-  "description": "A template for creating npm packages using TypeScript and VSCode",
+  "description": "An npm package for simulating parallel motion mechanisms.",
   "main": "./lib/src/index.js",
   "files": [
     "lib/**/*"
@@ -19,32 +19,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ryansonshine/typescript-npm-package-template.git"
+    "url": "git+https://github.com/dcyoung/stewart-platform-simulator.git"
   },
   "license": "MIT",
   "author": {
-    "name": "Ryan Sonshine",
-    "email": "ryansonshine@users.noreply.github.com",
-    "url": "https://github.com/ryansonshine"
+    "name": "David Young",
+    "email": "david@questionablyartificial.com",
+    "url": "https://github.com/dcyoung"
   },
   "engines": {
     "node": ">=12.0"
   },
   "keywords": [
-    "boilerplate",
-    "template",
-    "typescript",
-    "vscode",
-    "jest",
-    "husky",
-    "commitizen",
-    "semantic-release",
-    "codecov"
+    "robotics"
   ],
   "bugs": {
-    "url": "https://github.com/ryansonshine/typescript-npm-package-template/issues"
+    "url": "https://github.com/dcyoung/stewart-platform-simulator/issues"
   },
-  "homepage": "https://github.com/ryansonshine/typescript-npm-package-template#readme",
+  "homepage": "https://github.com/dcyoung/stewart-platform-simulator#readme",
   "devDependencies": {
     "@ryansonshine/commitizen": "^4.2.8",
     "@ryansonshine/cz-conventional-changelog": "^3.3.4",
@@ -118,5 +110,9 @@
       "@semantic-release/npm",
       "@semantic-release/github"
     ]
+  },
+  "dependencies": {
+    "@types/three": "^0.143.0",
+    "three": "^0.143.0"
   }
 }
