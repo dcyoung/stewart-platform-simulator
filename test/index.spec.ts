@@ -18,7 +18,7 @@ describe('index', () => {
         );
 
         const sim = new Simulation.HeadlessSimulation(mechanism);
-        sim.setSimulationMode(Simulation.SimulationMode.SimulateMotion);
+        sim.setSimulationMode(Simulation.SimulationMode.SIMULATED_MOTION);
 
         expect(mechanism.getConnectingRodLength_Left()).toBeCloseTo(
           parameters.length_connecting_rod_pitch_roll,

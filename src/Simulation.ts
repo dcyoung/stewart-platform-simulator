@@ -4,10 +4,10 @@ import { Mechanism3Dof } from './Mechanism';
 /**
  * A simulation mode for simulations
  */
-const enum SimulationMode {
-  Idle,
-  SimulateMotion,
-  TrackTarget,
+enum SimulationMode {
+  IDLE = 'IDLE',
+  SIMULATED_MOTION = 'SIMULATED_MOTION',
+  TRACK_TARGET = 'TRACK_TARGET',
 }
 
 /**
@@ -21,7 +21,7 @@ class HeadlessSimulation {
 
   constructor(mechanism: Mechanism3Dof) {
     this.mechanism = mechanism;
-    this._simulationMode = SimulationMode.Idle;
+    this._simulationMode = SimulationMode.IDLE;
     this._lookAtWorldPosition = new THREE.Vector3(0, 0, 0);
     this._scene = new THREE.Scene();
     this._scene.add(this.mechanism);
@@ -42,13 +42,13 @@ class HeadlessSimulation {
 
   animateMechanism(): void {
     switch (this._simulationMode) {
-      case SimulationMode.SimulateMotion:
+      case SimulationMode.SIMULATED_MOTION:
         this.mechanism.simulateMotion();
         break;
-      case SimulationMode.TrackTarget:
+      case SimulationMode.TRACK_TARGET:
         this.mechanism.trackTarget(this._lookAtWorldPosition);
         break;
-      case SimulationMode.Idle:
+      case SimulationMode.IDLE:
       default:
         break;
     }

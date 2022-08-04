@@ -20,13 +20,13 @@ requestAnimationFrame(() => sim.animateMechanism());
 
 ...
 // Simulate random sinusoidal motion
-sim.setSimulationMode(Simulation.SimulationMode.SimulateMotion);
+sim.setSimulationMode(Simulation.SimulationMode.SIMULATE_MOTION);
 ...
 // Simulate looking at a target position
-sim.setSimulationMode(Simulation.SimulationMode.TrackTarget);
+sim.setSimulationMode(Simulation.SimulationMode.TRACK_TARGET);
 sim.setTargetWorldPosition(new THREE.Vector3(...))
 
 ...
 // Set to idle
-sim.setSimulationMode(Simulation.SimulationMode.Idle);
+sim.setSimulationMode(Simulation.SimulationMode.IDLE);
 ```

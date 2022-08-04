@@ -334,7 +334,7 @@ class Mechanism3Dof extends THREE.Group {
     // angle of servo horn plane relative to base forward axis
     const beta = Math.PI + this.parameters.mount_angle_servo_pitch_roll_left;
 
-    // the calculated servo angle (expects vectors with for Z-up)
+    // the calculated servo angle (expects vectors with Z-up)
     return (
       Math.PI +
       calcServoAngle(
