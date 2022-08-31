@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { linspace } from './Utils';
 
 /**
  * Calculates the servo horn angle for a pitch/roll servos
@@ -65,4 +66,46 @@ function solveIk2JointPlanar(
   return results;
 }
 
-export { calcServoAngle, solveIk2JointPlanar };
+/**
+ * Calculates the joint angle for a 2 joint planar linkage where the first joint is
+ * constrained in the xy plane, but the second joint is not.
+ * Uses an optimization algorithm to converge on an angle w/ low error.
+ *
+ * @param v - the desired position of the end effector (relative to the linkage origin, ex: servo horn pivot)
+ * @param h - length of the first linkage arm (constrained to its xy plane)
+ * @param l - length of the second linkage arm (free in 3d space)
+ * @return the best guess angle in radians
+ */
+function solveIk2JointPlanar3d(v: THREE.Vector3, h: number, l: number): number {
+  // TODO: Update... this is currently expecting THREE.js like coordinate system for input vector v
+  const a = new THREE.Vector3(v.z, v.x, v.y);
+  const b = new THREE.Vector3();
+  const lTolerance = 0.00001;
+  const minAngle = 0;
+  const maxAngle = Math.PI;
+  let bestAngle = maxAngle - minAngle;
+  let searchRange = maxAngle - minAngle;
+  let bestError = 1000000;
+  let iter = 0;
+  while (bestError > lTolerance && iter < 10) {
+    for (const theta of linspace(
+      Math.max(bestAngle - searchRange / 2, minAngle),
+      Math.max(bestAngle + searchRange / 2, maxAngle),
+      100,
+      false
+    )) {
+      b.set(h * Math.cos(theta), h * Math.sin(theta), 0);
+      const error = Math.abs(l - a.distanceTo(b));
+      if (error < bestError) {
+        bestAngle = theta;
+        bestError = error;
+      }
+    }
+    searchRange /= 4;
+    iter += 1;
+  }
+
+  return bestAngle;
+}
+
+export { calcServoAngle, solveIk2JointPlanar, solveIk2JointPlanar3d };

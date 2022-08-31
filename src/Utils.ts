@@ -11,6 +11,17 @@ function lerpVector(
   return a.clone().add(dir);
 }
 
+function linspace(
+  start: number,
+  stop: number,
+  num: number,
+  endpoint = true
+): Array<number> {
+  const div = endpoint ? num - 1 : num;
+  const step = (stop - start) / div;
+  return Array.from({ length: num }, (_, i) => start + step * i);
+}
+
 function sinBetween(min: number, max: number, t: number, speed = 1.0): number {
   const halfRange = (max - min) / 2;
   return min + halfRange + Math.sin(speed * t) * halfRange;
@@ -26,4 +37,4 @@ function sinBetweenVectors(
   return lerpVector(a, b, normValue);
 }
 
-export { lerpVector, sinBetween, sinBetweenVectors };
+export { lerpVector, linspace, sinBetween, sinBetweenVectors };
